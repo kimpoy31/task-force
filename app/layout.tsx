@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import useDarkMode from "./DaisyUi/useDarkMode";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +15,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const {isDarkMode} = useDarkMode();
+
   return (
-    <html lang="en" data-theme="sunset">
+    <html lang="en" data-theme={isDarkMode ? "sunset" : "corporate"}>
       <body className={inter.className}>{children}</body>
     </html>
   );
 }
+
